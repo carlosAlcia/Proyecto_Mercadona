@@ -116,7 +116,7 @@ def get_products(subcategory_id):
         raise Exception(f"Error fetching products: {response.status_code} - {response.text}")
     
 
-def get_more_cheap_product(products):
+def get_more_cheap_product(products, category=None):
     """Finds the cheapest product from a dictionary of products.
     
     Args:
@@ -129,5 +129,11 @@ def get_more_cheap_product(products):
     if not products:
         return None, None
     
-    cheapest_product = min(products.items(), key=lambda item: item[1]['price'])
-    return cheapest_product[0], cheapest_product[1]['price']
+
+    # If a category is specified, filter products by that category
+    if category:
+        products_filtered = {k: v for k, v in products.items() if v['category'] == category}
+    
+    cheapest_product = min(products_filtered.items(), key=lambda item: float(item[1]['price']))
+    
+    return cheapest_product[0], products[cheapest_product[0]]['price']
