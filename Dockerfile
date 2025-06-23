@@ -2,7 +2,7 @@ FROM python
 
 WORKDIR /app
 
-# COPY requirements.txt .
+COPY requirements.txt .
 
 RUN mkdir src
 
