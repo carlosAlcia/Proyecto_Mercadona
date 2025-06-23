@@ -116,6 +116,27 @@ def get_products(subcategory_id):
         raise Exception(f"Error fetching products: {response.status_code} - {response.text}")
     
 
+def get_subsubcategory(subcategory_id):
+    """Extracts sub-subcategories from a dictionary of products.
+    
+    Args:
+        products (dict): A dictionary of products.
+        
+    Returns:
+        dict: A dictionary containing the sub-subcategories.
+        
+    """
+    products = get_products(subcategory_id)
+    sub_subcategories = []
+    
+    for product in products.values():
+        category = product['category']
+        if category not in sub_subcategories:
+            sub_subcategories.append(category)
+    
+    return sub_subcategories
+
+
 def get_more_cheap_product(products, category=None):
     """Finds the cheapest product from a dictionary of products.
     
