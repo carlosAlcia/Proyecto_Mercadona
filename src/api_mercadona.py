@@ -54,7 +54,34 @@ def get_categories():
         raise Exception(f"Error fetching categories: {response.status_code} - {response.text}")
     
 
+def process_products_json(json_data):
+    """Processes the JSON data from the Mercadona API to extract products.
+    
+    Args:
+        json_data (dict): The JSON data from the API response.
+        
+    Returns:
+        dict: A dictionary containing the processed products. Format:
+            {
+                product_id: {
+                    'name': product_name,
+                    'price': product_price
+                }
+            }
+        
+    """
+    products = {}
+    for category in json_data.get('categories', []):
+        for product in category.get('products', []):
+            
+            product_id = product['id']
+            products[product_id] = {
+                'name': product['display_name'],
+                'price': product['price_instructions']['bulk_price'],
+                'category': category['name']
+            }
 
+    return products
 
 def get_products(subcategory_id):
     """Fetches products for a given subcategory from the Mercadona API.
@@ -68,6 +95,6 @@ def get_products(subcategory_id):
     url = URL_Products.replace("SUBCATEGORY_ID", subcategory_id)
     response = requests.get(url, headers=None, timeout=30)
     if response.status_code == 200:
-        return response.json()
+        return process_products_json(response.json())
     else:
         raise Exception(f"Error fetching products: {response.status_code} - {response.text}")
