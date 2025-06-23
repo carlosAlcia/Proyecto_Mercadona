@@ -30,7 +30,6 @@ def process_categories_json(json_data):
             'name': category['name'],
             'subcategory': {}
         }
-
         for subcategory in category.get('categories', []):
             subcat_id = subcategory['id']
             categories[category_id]['subcategory'][subcat_id] = {
@@ -50,6 +49,24 @@ def get_categories():
     response = requests.get(URL_Categories, headers=None, timeout = 30)
     if response.status_code == 200:
         return process_categories_json(response.json())
+    else:
+        raise Exception(f"Error fetching categories: {response.status_code} - {response.text}")
+    
+def get_subcategories(category_id):
+    """Gets subcategories for a given category from the Mercadona API.
+    
+    Args:
+        category_id (str): The ID of the category to fetch subcategories for.
+    Returns:
+        dict: A dictionary containing the subcategories for the specified category.
+        """
+    response = requests.get(URL_Categories, headers=None, timeout = 30)
+    if response.status_code == 200:
+        categories = process_categories_json(response.json())
+        if category_id in categories:
+            return categories[category_id]['subcategory']
+        else:
+            raise Exception(f"Category ID {category_id} not found in categories.")
     else:
         raise Exception(f"Error fetching categories: {response.status_code} - {response.text}")
     
@@ -73,7 +90,6 @@ def process_products_json(json_data):
     products = {}
     for category in json_data.get('categories', []):
         for product in category.get('products', []):
-            
             product_id = product['id']
             products[product_id] = {
                 'name': product['display_name'],
@@ -87,12 +103,12 @@ def get_products(subcategory_id):
     """Fetches products for a given subcategory from the Mercadona API.
     
     Args:
-        subcategory_id (str): The ID of the subcategory to fetch products for.
+        subcategory_id (int): The ID of the subcategory to fetch products for.
     Returns:
         dict: A dictionary containing the products for the specified subcategory.
         
     """
-    url = URL_Products.replace("SUBCATEGORY_ID", subcategory_id)
+    url = URL_Products.replace("SUBCATEGORY_ID", str(subcategory_id))
     response = requests.get(url, headers=None, timeout=30)
     if response.status_code == 200:
         return process_products_json(response.json())
