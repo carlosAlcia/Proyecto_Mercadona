@@ -1,6 +1,7 @@
 import requests
 
 URL_Categories = "https://tienda.mercadona.es/api/categories/"
+URL_Products = "https://tienda.mercadona.es/api/categories/SUBCATEGORY_ID/"
 
 def process_categories_json(json_data):
     """Processes the JSON data from the Mercadona API to extract categories.
@@ -55,3 +56,18 @@ def get_categories():
 
 
 
+def get_products(subcategory_id):
+    """Fetches products for a given subcategory from the Mercadona API.
+    
+    Args:
+        subcategory_id (str): The ID of the subcategory to fetch products for.
+    Returns:
+        dict: A dictionary containing the products for the specified subcategory.
+        
+    """
+    url = URL_Products.replace("SUBCATEGORY_ID", subcategory_id)
+    response = requests.get(url, headers=None, timeout=30)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        raise Exception(f"Error fetching products: {response.status_code} - {response.text}")
