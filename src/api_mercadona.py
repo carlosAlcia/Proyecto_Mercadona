@@ -114,3 +114,20 @@ def get_products(subcategory_id):
         return process_products_json(response.json())
     else:
         raise Exception(f"Error fetching products: {response.status_code} - {response.text}")
+    
+
+def get_more_cheap_product(products):
+    """Finds the cheapest product from a dictionary of products.
+    
+    Args:
+        products (dict): A dictionary of products.
+        
+    Returns:
+        tuple: A tuple containing the product ID and its price of the cheapest product.
+        
+    """
+    if not products:
+        return None, None
+    
+    cheapest_product = min(products.items(), key=lambda item: item[1]['price'])
+    return cheapest_product[0], cheapest_product[1]['price']
