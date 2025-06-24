@@ -2,8 +2,7 @@ from api_mercadona import *
 
 if __name__ == "__main__":
     try:
-        create_chart()
-        exit()
+        
 
         categories = get_categories()
         # Example usage of get_products

@@ -159,28 +159,3 @@ def get_more_cheap_product(products, category=None):
     
     return cheapest_product[0], products[cheapest_product[0]]['price']
 
-
-def create_chart():
-    """TEST"""
-
-    """Para añadir un producto al carrito tengo que ponerlo como cookie MO-cart (el mismo payload que está debajo) 
-    y abrir en el navegador para que el usuario pueda verlo"""
-    
-
-    response = requests.get('https://tienda.mercadona.es/', timeout=30)
-    print(response.status_code)
-    print(response.text)
-
-    payload ={"id":"ID","lines":[{"quantity":1,"product_id":"4241","sources":["+CT"]}]}
-    headers = {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'}
-    #response = requests.post('https://tienda.mercadona.es/api/carts/?lang=es&wh=svq1', json=payload, headers=headers, timeout=30)
-    # Open the url in the browser
-    
-
-
-    print(response.status_code)
-    if response.status_code == 200:
-        print("Cart created successfully")
-        print(response.json())
