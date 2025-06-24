@@ -5,6 +5,31 @@ import requests
 URL_Categories = "https://tienda.mercadona.es/api/categories/"
 URL_Products = "https://tienda.mercadona.es/api/categories/SUBCATEGORY_ID/"
 
+# Read the key from the temp file
+URL_Search = "https://7uzjkl1dj0-dsn.algolia.net/1/indexes/products_prod_svq1_es/query?x-algolia-agent=Algolia%20for%20JavaScript%20(3.35.1)%3B%20Browser&x-algolia-application-id=7UZJKL1DJ0&x-algolia-api-key=API_KEY"
+
+def search_products(query):
+    payload = {"params":"query=cerd&clickAnalytics=true&analyticsTags=%5B%22web%22%5D&getRankingInfo=true&analytics=true"}
+    headers = {"Accept-Encoding":"gzip, deflate, br, zstd",
+               "Accept-Language":"es-ES,es;q=0.9",
+               "Connection":"keep-alive",
+               "Content-Length":"108",
+               "Host":"7uzjkl1dj0-dsn.algolia.net",
+               "Origin":"https://tienda.mercadona.es",
+               "Referer":"https://tienda.mercadona.es/",
+               "Sec-Fetch-Dest":"empty",
+               "Sec-Fetch-Mode":"cors",
+               "Sec-Fetch-Site":"cross-site",
+               "User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+               "accept":"application/json",
+               "content-type":"application/x-www-form-urlencoded",
+               "sec-ch-ua": 'Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+               "sec-ch-ua-mobile":"?0",
+               "sec-ch-ua-platform":'"macOS"',
+               "sec-gpc":"1"}
+    response = requests.post(URL_Search, json=payload, headers=headers, timeout=30)
+    if response.status_code == 200:
+        print("Search response:", response.json())
 
 def get_categories():
     """Fetches categories from the Mercadona API.

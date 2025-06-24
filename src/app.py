@@ -6,7 +6,8 @@ from utils_products import *
 
 if __name__ == "__main__":
     try:
-        
+        search_products('Aceite de oliva')
+        exit()
 
         categories = get_categories()
         # Example usage of get_products
