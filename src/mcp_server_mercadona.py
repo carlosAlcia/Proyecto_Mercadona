@@ -20,5 +20,4 @@ def get_categories():
 #     return api_get_subcategories(category_id)
 
 if __name__ == "__main__":
-    print('Hola', file=sys.stderr)
     mcp.run(transport='stdio')
