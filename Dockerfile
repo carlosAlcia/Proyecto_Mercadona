@@ -10,4 +10,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY src/ src/
 
-CMD ["python", "src/mcp_server_mercadona.py"]
+CMD ["python", "src/app.py"]
