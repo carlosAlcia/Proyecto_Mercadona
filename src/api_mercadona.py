@@ -8,8 +8,19 @@ URL_Products = "https://tienda.mercadona.es/api/categories/SUBCATEGORY_ID/"
 # Read the key from the temp file
 URL_Search = "https://7uzjkl1dj0-dsn.algolia.net/1/indexes/products_prod_svq1_es/query?x-algolia-agent=Algolia%20for%20JavaScript%20(3.35.1)%3B%20Browser&x-algolia-application-id=7UZJKL1DJ0&x-algolia-api-key=API_KEY"
 
-def search_products(query):
-    payload = {"params":"query=cerd&clickAnalytics=true&analyticsTags=%5B%22web%22%5D&getRankingInfo=true&analytics=true"}
+def search_products(query:str, api_key:str):
+    """Searches for products in the Mercadona API using a query string. Returns the ID, name and price of the products found.
+    Args:
+        query (str): The search query string.
+    Returns:
+        dict: A dictionary containing the products found in the search. 
+    """
+
+    query = query.replace(" ", "+")
+    global URL_Search
+    URL_Search = URL_Search.replace("API_KEY", api_key)
+
+    payload = {"params":f"query={query}&clickAnalytics=true&analyticsTags=%5B%22web%22%5D&getRankingInfo=true&analytics=true"}
     headers = {"Accept-Encoding":"gzip, deflate, br, zstd",
                "Accept-Language":"es-ES,es;q=0.9",
                "Connection":"keep-alive",
@@ -29,7 +40,9 @@ def search_products(query):
                "sec-gpc":"1"}
     response = requests.post(URL_Search, json=payload, headers=headers, timeout=30)
     if response.status_code == 200:
-        print("Search response:", response.json())
+        return process_search_json(response.json())
+    else:
+        raise Exception(f"Error fetching search results: {response.status_code} - {response.text}")
 
 def get_categories():
     """Fetches categories from the Mercadona API.
@@ -167,3 +180,30 @@ def process_categories_json(json_data):
             }
 
     return categories
+
+def process_search_json(json_data, max_products=3):
+    """Processes the JSON data from the Mercadona search API to extract products.
+    
+    Args:
+        json_data (dict): The JSON data from the API response.
+        max_products (int): The maximum number of products to return. Default is 3.
+        
+    Returns:
+        dict: A dictionary containing the processed products. Format:
+            {
+                product_id: {
+                    'name': product_name,
+                    'price': product_price,
+                    'type': product_type
+                }
+            }
+        
+    """
+    products = {}
+    for hit in json_data.get('hits', [])[:max_products]:
+        # Get the relevant fields from the hit : ID, name and price.
+        products[hit['id']] = {
+            'name': hit['slug'],
+            'price': hit['price_instructions']['bulk_price']
+        }
+    return products
