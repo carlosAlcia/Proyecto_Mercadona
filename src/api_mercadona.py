@@ -12,6 +12,7 @@ def search_products(query:str, api_key:str):
     """Searches for products in the Mercadona API using a query string. Returns the ID, name and price of the products found.
     Args:
         query (str): The search query string.
+        api_key (str): The API key for accessing the Mercadona search API.
     Returns:
         dict: A dictionary containing the products found in the search. 
     """
@@ -49,7 +50,6 @@ def get_categories():
     
     Returns:
         dict: A dictionary containing the categories.
-        
     """
     response = requests.get(URL_Categories, headers=None, timeout = 30)
     if response.status_code == 200:
@@ -65,6 +65,7 @@ def get_subcategories(category_id):
     Returns:
         dict: A dictionary containing the subcategories for the specified category.
         """
+    
     response = requests.get(URL_Categories, headers=None, timeout = 30)
     if response.status_code == 200:
         categories = process_categories_json(response.json())
@@ -85,6 +86,7 @@ def get_types(subcategory_id):
         dict: A dictionary containing the types of products for the specified subcategory.
         
     """
+
     products = get_products_by_subcategory(subcategory_id)
     types = []
     
@@ -102,9 +104,9 @@ def get_products_by_subcategory(subcategory_id, type:str=""):
         subcategory_id (int): The ID of the subcategory to fetch products for.
         type (str, optional): The type of products to filter by. If None, all products are returned.
     Returns:
-        dict: A dictionary containing the products for the specified subcategory.
-        
+        dict: A dictionary containing the products for the specified subcategory. 
     """
+
     url = URL_Products.replace("SUBCATEGORY_ID", str(subcategory_id))
     response = requests.get(url, headers=None, timeout=30)
     if response.status_code == 200:
@@ -133,9 +135,9 @@ def process_products_json(json_data, return_type=True):
                     'price': product_price
                     'type': product_type (if return_type is True)
                 }
-            }
-        
+            }  
     """
+
     products = {}
     for category in json_data.get('categories', []):
         for product in category.get('products', []):
@@ -167,8 +169,8 @@ def process_categories_json(json_data):
                     }
                 }
             }
-        
     """
+
     categories = {}
     for category in json_data.get('results', []):
         category_id = category['id']
@@ -200,8 +202,8 @@ def process_search_json(json_data, max_products=3):
                     'type': product_type
                 }
             }
-        
     """
+    
     products = {}
     for hit in json_data.get('hits', [])[:max_products]:
         # Get the relevant fields from the hit : ID, name and price.
