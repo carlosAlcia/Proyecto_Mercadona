@@ -95,11 +95,12 @@ def get_types(subcategory_id):
     
     return types
      
-def get_products_by_subcategory(subcategory_id, type:str=None):
+def get_products_by_subcategory(subcategory_id, type:str=""):
     """Fetches products for a given subcategory from the Mercadona API.
     
     Args:
         subcategory_id (int): The ID of the subcategory to fetch products for.
+        type (str, optional): The type of products to filter by. If None, all products are returned.
     Returns:
         dict: A dictionary containing the products for the specified subcategory.
         
@@ -108,6 +109,7 @@ def get_products_by_subcategory(subcategory_id, type:str=None):
     response = requests.get(url, headers=None, timeout=30)
     if response.status_code == 200:
         products = process_products_json(response.json(), return_type=True)
+        # Filter products by type if specified
         if type:
             products = {k: v for k, v in products.items() if v['type'] == type}
         return products
@@ -140,9 +142,10 @@ def process_products_json(json_data, return_type=True):
             product_id = product['id']
             products[product_id] = {
                 'name': product['display_name'],
-                'price': product['price_instructions']['bulk_price'],
-                'type': category['name']
+                'price': product['price_instructions']['bulk_price']
             }
+            if return_type:
+                products[product_id]['type'] = category['name']
 
     return products
 
