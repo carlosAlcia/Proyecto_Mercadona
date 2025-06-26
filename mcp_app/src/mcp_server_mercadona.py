@@ -6,11 +6,17 @@ import json
 
 mcp = FastMCP("mercadona")
 
-api_key = None
+# Key for search products
+search_api_key = None
 
 @mcp.tool()
 def get_categories():
-    """Fetches categories from the Mercadona API."""
+    """Fetches categories from the Mercadona API.
+    
+    Returns:
+        str: A formatted string containing the names of the categories.
+    """
+
     categories_dict = api_get_categories()
     categories = "Here are the categories:\n"
     for category_values in categories_dict.values():
@@ -20,8 +26,16 @@ def get_categories():
 
 @mcp.tool()
 def search_product(query: str):
-    """Searches for products in the Mercadona API."""
-    results = api_search_product(query, api_key)
+    """Searches for products in the Mercadona API.
+    
+    Args:
+        query (str): The search query string.
+        
+    Returns:
+        str: A formatted string containing the products found and their prices.
+    """
+
+    results = api_search_product(query, search_api_key)
     if not results:
         return "No products found."
     
@@ -36,7 +50,7 @@ if __name__ == "__main__":
     # Read the API key from the temp file
     with open('../secrets.json', 'r') as file:
         secrets : dict = json.load(file)
-        api_key = secrets.get('search_key')
-        if not api_key:
+        search_api_key = secrets.get('search_key')
+        if not search_api_key:
             raise ValueError("API key not found in secrets.json")
     mcp.run(transport='stdio')
