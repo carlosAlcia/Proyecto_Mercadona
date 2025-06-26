@@ -1,1 +1,4 @@
 *.json
+.venv
+geckodriver
+.DS_Store
