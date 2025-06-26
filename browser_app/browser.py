@@ -34,6 +34,5 @@ driver.execute_script("""window.localStorage.setItem( \
 # Refresh the page to apply the changes
 driver.refresh()
 
-# Wait until close the browser
-time.sleep(60)
+
 
