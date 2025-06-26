@@ -1,3 +1,5 @@
+# Created by Carlos Alvarez on 2025-06-24
+
 from mcp.server.fastmcp import FastMCP
 from api_mercadona import get_categories as api_get_categories
 from api_mercadona import search_products as api_search_product

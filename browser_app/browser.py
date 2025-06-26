@@ -1,3 +1,5 @@
+# Created by Carlos Alvarez on 2025-06-26
+
 from selenium import webdriver
 from selenium.webdriver.firefox.service import Service
 import time
