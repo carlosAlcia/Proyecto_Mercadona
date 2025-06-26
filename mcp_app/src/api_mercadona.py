@@ -65,16 +65,11 @@ def get_subcategories(category_id):
     Returns:
         dict: A dictionary containing the subcategories for the specified category.
         """
-    
-    response = requests.get(URL_Categories, headers=None, timeout = 30)
-    if response.status_code == 200:
-        categories = process_categories_json(response.json())
-        if category_id in categories:
-            return categories[category_id]['subcategory']
-        else:
-            raise Exception(f"Category ID {category_id} not found in categories.")
+    categories = get_categories()
+    if category_id in categories:
+        return categories[category_id]['subcategory']
     else:
-        raise Exception(f"Error fetching categories: {response.status_code} - {response.text}")
+        raise Exception(f"Category ID {category_id} not found in categories.")
 
 def get_types(subcategory_id):
     """Extracts types of products from a subcategory id.
