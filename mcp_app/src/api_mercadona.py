@@ -118,7 +118,6 @@ def get_products_by_subcategory(subcategory_id, type:str=""):
     else:
         raise Exception(f"Error fetching products: {response.status_code} - {response.text}")
 
-
 def process_products_json(json_data, return_type=True):
     """Processes the JSON data from the Mercadona API to extract products.
     
