@@ -1,6 +1,7 @@
 # Created by Carlos Alvarez on 2025-06-23
 
 import requests
+import logging
 
 URL_Categories = "https://tienda.mercadona.es/api/categories/"
 URL_Products = "https://tienda.mercadona.es/api/categories/SUBCATEGORY_ID/"
@@ -63,8 +64,12 @@ def get_subcategories(category_id):
     Args:
         category_id (str): The ID of the category to fetch subcategories for.
     Returns:
-        dict: A dictionary containing the subcategories for the specified category.
-        """
+        dict: A dictionary containing the subcategories for the specified category. 
+    """
+    try:
+        category_id = int(category_id)
+    except ValueError:
+        raise ValueError(f"Invalid category ID: {category_id}. It should be an integer.")
     categories = get_categories()
     if category_id in categories:
         return categories[category_id]['subcategory']
