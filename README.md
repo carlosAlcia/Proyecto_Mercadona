@@ -6,7 +6,7 @@ Este proyecto combina la inteligencia artificial de Claude AI[^1], con la plataf
 
 ¿Buscas una receta en particular? ¿Quieres hacer la compra de la semana? O, simplemente, ¿quieres comprar un producto en concreto?
 
-**¡Simplemente pide a Claude AI que prepare tu carrito de la compra en Mercadona con lo que necesitas!**
+**¡Pide a Claude AI que prepare tu carrito de la compra en Mercadona con lo que necesitas!**
 
 Claude AI buscará aquel producto que quieres comprar o todos los ingredientes necesarios para tu receta o menú semanal y los incluirá en el carrito de la compra de Mercadona, dejándotelo todo listo para pagar. 
 
