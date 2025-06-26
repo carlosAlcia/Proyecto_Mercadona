@@ -8,6 +8,7 @@ from api_mercadona import get_products_by_subcategory as api_get_products_by_sub
 from api_mercadona import get_types as api_get_types
 from utils_products import get_more_cheap_product as utils_get_more_cheap_product
 import json
+import requests
 
 mcp = FastMCP("mercadona")
 
@@ -134,6 +135,29 @@ def get_more_cheap_product(subcategory_id: str, type: str=""):
         return f"No products found for subcategory ID {subcategory_id} with type '{type}'."
     
     return f"The cheapest product is {product_id} with a price of {price}."
+
+
+@mcp.tool()
+def create_mercadona_cart(products: list[int]):
+    """Sends a product list to the server to create a Mercadona cart.
+    
+    Args:
+        products (list[int]): The list of product IDs to be sent in the cart.
+        
+    Returns:
+        str: A confirmation message indicating the cart was sent successfully.
+    """
+    
+    # Sending the request to the server in the host machine
+    response = requests.post(
+        'http://host.docker.internal:8080/create_cart',
+        json={'products': products}
+    )
+    if response.status_code != 200:
+        return f"Failed to send cart: {response.status_code} - {response.text}"
+    
+
+    return f"Cart sent successfully. Response: {response.json().get('Response', 'No response message')}"
 
 
 
