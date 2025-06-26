@@ -3,6 +3,7 @@
 from mcp.server.fastmcp import FastMCP
 from api_mercadona import get_categories as api_get_categories
 from api_mercadona import search_products as api_search_product
+from api_mercadona import get_subcategories as api_get_subcategories
 import sys
 import json
 
@@ -16,14 +17,33 @@ def get_categories():
     """Fetches categories from the Mercadona API.
     
     Returns:
-        str: A formatted string containing the names of the categories.
+        str: A formatted string containing the names of the categories and the ID.
     """
 
     categories_dict = api_get_categories()
     categories = "Here are the categories:\n"
-    for category_values in categories_dict.values():
-        categories += f"- {category_values['name']}\n"
+    for category_id, category_values in categories_dict.items():
+        categories += f"- {category_values['name']} - ID: {category_id}\n"
     return categories
+
+@mcp.tool()
+def get_subcategories(category_id: str):
+    """Gets subcategories for a given category from the Mercadona API.
+    
+    Args:
+        category_id (str): The ID of the category to fetch subcategories for.
+        
+    Returns:
+        str: A formatted string containing the names of the subcategories.
+    """
+
+    subcategories_dict = api_get_subcategories(category_id)
+    if not subcategories_dict:
+        return f"No subcategories found for category ID {category_id}."
+    subcategories = "Here are the subcategories:\n"
+    for subcategory_id, subcategory in subcategories_dict.items():
+        subcategories += f"- {subcategory['name']} (ID: {subcategory_id})\n"
+    return subcategories
 
 
 @mcp.tool()
