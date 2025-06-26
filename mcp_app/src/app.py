@@ -7,14 +7,9 @@ import json
 
 if __name__ == "__main__":
     try:
-        # Read the API key from the temp file
-        with open('../secrets.json', 'r') as file:
-            secrets = json.load(file)
-            api_key = secrets.get('search_key')
-            if not api_key:
-                raise ValueError("API key not found in secrets.json")
+        
 
-        products = search_products('Aceite de oliva', api_key)
+        products = search_products('Aceite de oliva')
         print(f"Found {len(products)} products for 'Aceite de oliva'")
         for product_id, product_data in products.items():
             print(f"Product ID: {product_id}, Name: {product_data['name']}, Price: {product_data['price']}")
