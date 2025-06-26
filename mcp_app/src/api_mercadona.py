@@ -58,7 +58,7 @@ def get_categories():
     else:
         raise Exception(f"Error fetching categories: {response.status_code} - {response.text}")
     
-def get_subcategories(category_id):
+def get_subcategories(category_id:str):
     """Gets subcategories for a given category from the Mercadona API.
     
     Args:
@@ -76,17 +76,21 @@ def get_subcategories(category_id):
     else:
         raise Exception(f"Category ID {category_id} not found in categories.")
 
-def get_types(subcategory_id):
+def get_types(subcategory_id:str):
     """Extracts types of products from a subcategory id.
     
     Args:
-        subcategory_id (int): The id of a subcategory.
+        subcategory_id (str): The id of a subcategory.
         
     Returns:
         dict: A dictionary containing the types of products for the specified subcategory.
         
     """
-
+    try:
+        subcategory_id = int(subcategory_id)
+    except ValueError:
+        raise ValueError(f"Invalid subcategory ID: {subcategory_id}. It should be an integer.")
+    
     products = get_products_by_subcategory(subcategory_id)
     types = []
     
@@ -97,15 +101,19 @@ def get_types(subcategory_id):
     
     return types
      
-def get_products_by_subcategory(subcategory_id, type:str=""):
+def get_products_by_subcategory(subcategory_id:str, type:str=""):
     """Fetches products for a given subcategory from the Mercadona API.
     
     Args:
-        subcategory_id (int): The ID of the subcategory to fetch products for.
+        subcategory_id (str): The ID of the subcategory to fetch products for.
         type (str, optional): The type of products to filter by. If None, all products are returned.
     Returns:
         dict: A dictionary containing the products for the specified subcategory. 
     """
+    try:
+        subcategory_id = int(subcategory_id)
+    except ValueError:
+        raise ValueError(f"Invalid subcategory ID: {subcategory_id}. It should be an integer.")
 
     url = URL_Products.replace("SUBCATEGORY_ID", str(subcategory_id))
     response = requests.get(url, headers=None, timeout=30)
