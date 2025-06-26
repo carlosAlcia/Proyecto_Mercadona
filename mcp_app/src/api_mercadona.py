@@ -1,7 +1,6 @@
 # Created by Carlos Alvarez on 2025-06-23
 
 import requests
-import logging
 
 URL_Categories = "https://tienda.mercadona.es/api/categories/"
 URL_Products = "https://tienda.mercadona.es/api/categories/SUBCATEGORY_ID/"
