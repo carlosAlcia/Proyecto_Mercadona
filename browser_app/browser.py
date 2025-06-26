@@ -33,10 +33,12 @@ class Browser:
         })
         # Extend the products list with the provided product IDs
         self.products.extend(products_id)
+        # Remove duplicates from the products list
+        self.products = list(set(self.products))
         # Create the cart object with the products
         products_lines = [
             {"quantity": 1,"product_id":str(pid), "sources":["+CT"]}
-            for pid in products_id
+            for pid in self.products
         ]
         cart_object = {
             "id": "716e7efb-4858-4ab6-a6cf-14eaecf2600f",
@@ -59,6 +61,8 @@ class Browser:
         """
         # Extend the products list with the new product IDs
         self.products.extend(products_id)
+        # Remove duplicates from the products list
+        self.products = list(set(self.products))
         # Create the cart object with the updated products
         # This will overwrite the existing cart in localStorage
         products_lines = [
