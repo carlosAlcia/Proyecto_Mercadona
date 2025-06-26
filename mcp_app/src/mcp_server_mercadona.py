@@ -4,7 +4,9 @@ from mcp.server.fastmcp import FastMCP
 from api_mercadona import get_categories as api_get_categories
 from api_mercadona import search_products as api_search_product
 from api_mercadona import get_subcategories as api_get_subcategories
-import sys
+from api_mercadona import get_products_by_subcategory as api_get_products_by_subcategory
+from api_mercadona import get_types as api_get_types
+from utils_products import get_more_cheap_product as utils_get_more_cheap_product
 import json
 
 mcp = FastMCP("mercadona")
@@ -65,6 +67,73 @@ def search_product(query: str):
     for id, product in results.items():
         response += f"- {product['name']} (ID: {id}, price: {product['price']})\n"
     return response
+
+@mcp.tool()
+def get_products_by_subcategory(subcategory_id: str):
+    """Gets products by subcategory from the Mercadona API.
+    
+    Args:
+        subcategory_id (str): The ID of the subcategory to fetch products for.
+        
+    Returns:
+        str: A formatted string containing the products found in the subcategory.
+    """
+
+    products = api_get_products_by_subcategory(subcategory_id)
+    if not products:
+        return f"No products found for subcategory ID {subcategory_id}."
+    
+    response = "Here are the products found:\n"
+    for id, product in products.items():
+        response += f"- {product['name']} (ID: {id}, price: {product['price']})\n"
+    return response
+
+@mcp.tool()
+def get_types(subcategory_id: str):
+    """Extracts types of products from a subcategory id.
+    
+    Args:
+        subcategory_id (str): The id of a subcategory. 
+    Returns:
+        str: A formatted string containing the types of products for the specified subcategory.
+    """
+    
+    try:
+        subcategory_id = int(subcategory_id)
+    except ValueError:
+        return f"Invalid subcategory ID: {subcategory_id}. It should be an integer."
+    
+    types = api_get_types(subcategory_id)
+    if not types:
+        return f"No types found for subcategory ID {subcategory_id}."
+    
+    response = "Here are the types of products found:\n"
+    for type_name in types:
+        response += f"- {type_name}\n"
+    return response
+
+@mcp.tool()
+def get_more_cheap_product(subcategory_id: str, type: str=""):
+    """Gets the cheapest product from a subcategory (and type if specified).
+    
+    Args:
+        subcategory_id (str): The ID of the subcategory to search in.
+        type (str): The type of product to filter.
+        
+    Returns:
+        str: A formatted string containing the ID and price of the cheapest product found.
+    """
+    try:
+        subcategory_id = int(subcategory_id)
+    except ValueError:
+        return f"Invalid subcategory ID: {subcategory_id}. It should be an integer."
+    products = api_get_products_by_subcategory(subcategory_id)
+    product_id, price = utils_get_more_cheap_product(products, type)
+    
+    if product_id is None:
+        return f"No products found for subcategory ID {subcategory_id} with type '{type}'."
+    
+    return f"The cheapest product is {product_id} with a price of {price}."
 
 
 
