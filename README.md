@@ -14,9 +14,7 @@ Claude AI buscará aquel producto que quieres comprar o todos los ingredientes n
 
 Te permitirá ahorrar tiempo y evitar olvidos al hacer tu lista de la compra, permitiéndote verificar el carrito de la compra antes de pagar.
 
-**_NOTA IMPORTANTE_**
-
-Este proyecto es solo demostrativo, no busca ser para uso público y haría falta una integración real con la plataforma de Mercadona para un buen funcionamiento.  
+⚠️ **_NOTA_** ⚠️ : Este proyecto es solo demostrativo, no busca ser para uso público y haría falta una integración real con la plataforma de Mercadona para un buen funcionamiento.  
 
 ## Demostración
 
@@ -27,7 +25,7 @@ Este proyecto es solo demostrativo, no busca ser para uso público y haría falt
 El esquema general del proyecto es el siguiente: 
 
 <p align='center'>
-    <img src="./resources/schema.png" alt="Global schema" width="650">
+    <img src="./resources/schema.png" alt="Global schema" width="450">
 </p>
 
 El usuario interactúa directamente con Claude AI Desktop. Cuando hace una pregunta que involucre a Mercadona, Claude AI tiene disponible varias herramientas a través del servidor MCP (Model Context Protocol)[^3]. Estas herramientas le permiten acceder a la base de datos de Mercadona, a través de la API desarrollada, o, si conoce los identificadores de los productos, añadirlos al carrito de la compra en la web de Mercadona.
@@ -89,13 +87,9 @@ Para detalles sobre cómo instalar y usar el sistema, contacta conmigo por Linke
 
 LinkedIn: [www.linkedin.com/in/carlos-alvarez-cia](http://www.linkedin.com/in/carlos-alvarez-cia)
 
-## Referencias
+---
 
-[^1]: https://claude.ai
-[^2]: https://www.mercadona.es
-[^3]: https://modelcontextprotocol.io/introduction
-
-# English Version
+_English Version_
 
 # Mercadona: Create your cart in seconds—just say what you want to eat.
 
@@ -111,9 +105,7 @@ Claude AI will search for the product you want to buy—or gather all the ingred
 
 It helps you save time and avoid forgetting anything from your shopping list, allowing you to review the cart before finalizing the purchase.
 
-_IMPORTANT NOTE_
-
-This project is for demonstration purposes only. It is not intended for public use and would require real integration with Mercadona's platform for full operation.
+⚠️ **_NOTE_** ⚠️: This project is for demonstration purposes only. It is not intended for public use and would require real integration with Mercadona's platform for full operation.
 
 ## Demo
 
@@ -124,7 +116,7 @@ This project is for demonstration purposes only. It is not intended for public u
 The general architecture of the project is as follows:
 
 <p align='center'>
-    <img src="./resources/schema.png" alt="Global schema" width="650">
+    <img src="./resources/schema.png" alt="Global schema" width="450">
 </p>
 
 The user interacts directly with Claude AI Desktop. When a request involving Mercadona is made, Claude AI has access to several tools via the MCP (Model Context Protocol) server[^3]. These tools allow access to Mercadona's database through the developed API, or—if the product IDs are known—directly add them to the cart on Mercadona's website.
@@ -189,12 +181,10 @@ For details on how to install and use the system, contact me via LinkedIn.
 
 LinkedIn: [www.linkedin.com/in/carlos-alvarez-cia](http://www.linkedin.com/in/carlos-alvarez-cia)
 
-## References
+## References/Referencias
 
 [^1]: [https://claude.ai](https://claude.ai)
-
 [^2]: [https://www.mercadona.es](https://www.mercadona.es)
-
 [^3]: [https://modelcontextprotocol.io/introduction](https://modelcontextprotocol.io/introduction)
 
 
