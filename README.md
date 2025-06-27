@@ -87,13 +87,9 @@ Para detalles sobre cómo instalar y usar el sistema, contacta conmigo por Linke
 
 LinkedIn: [www.linkedin.com/in/carlos-alvarez-cia](http://www.linkedin.com/in/carlos-alvarez-cia)
 
-## Referencias
+---
 
-[^1]: https://claude.ai
-[^2]: https://www.mercadona.es
-[^3]: https://modelcontextprotocol.io/introduction
-
-# English Version
+English Version
 
 # Mercadona: Create your cart in seconds—just say what you want to eat.
 
@@ -185,12 +181,10 @@ For details on how to install and use the system, contact me via LinkedIn.
 
 LinkedIn: [www.linkedin.com/in/carlos-alvarez-cia](http://www.linkedin.com/in/carlos-alvarez-cia)
 
-## References
+## References/Referencias
 
 [^1]: [https://claude.ai](https://claude.ai)
-
 [^2]: [https://www.mercadona.es](https://www.mercadona.es)
-
 [^3]: [https://modelcontextprotocol.io/introduction](https://modelcontextprotocol.io/introduction)
 
 
