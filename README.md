@@ -26,7 +26,9 @@ Este proyecto es solo demostrativo, no busca ser para uso público y haría falt
 
 El esquema general del proyecto es el siguiente: 
 
-<img src="./resources/schema.png" alt="Global schema" width="650">
+<p align='center'>
+    <img src="./resources/schema.png" alt="Global schema" width="650">
+</p>
 
 El usuario interactúa directamente con Claude AI Desktop. Cuando hace una pregunta que involucre a Mercadona, Claude AI tiene disponible varias herramientas a través del servidor MCP (Model Context Protocol)[^3]. Estas herramientas le permiten acceder a la base de datos de Mercadona, a través de la API desarrollada, o, si conoce los identificadores de los productos, añadirlos al carrito de la compra en la web de Mercadona.
 
