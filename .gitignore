@@ -3,3 +3,5 @@
 geckodriver
 .DS_Store
 __pycache__
+!secrets_template.json
+*.svg
