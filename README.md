@@ -20,7 +20,7 @@ Este proyecto es solo demostrativo, no busca ser para uso público y haría falt
 
 ## Demostración
 
-![Demo](./resources/Video_MCP_Full.gif)
+![Demo](./resources/MCP-Mercadona.gif)
 
 ## Detalles técnicos
 
@@ -117,7 +117,7 @@ This project is for demonstration purposes only. It is not intended for public u
 
 ## Demo
 
-![Demo](./resources/Video_MCP_Full.gif)
+![Demo](./resources/MCP-Mercadona.gif)
 
 ## Technical Details
 
