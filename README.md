@@ -26,7 +26,7 @@ Este proyecto es solo demostrativo, no busca ser para uso público y haría falt
 
 El esquema general del proyecto es el siguiente: 
 
-<img src="./resources/schema.png" alt="Global schema" width="450">
+<img src="./resources/schema.png" alt="Global schema" width="650">
 
 El usuario interactúa directamente con Claude AI Desktop. Cuando hace una pregunta que involucre a Mercadona, Claude AI tiene disponible varias herramientas a través del servidor MCP (Model Context Protocol)[^3]. Estas herramientas le permiten acceder a la base de datos de Mercadona, a través de la API desarrollada, o, si conoce los identificadores de los productos, añadirlos al carrito de la compra en la web de Mercadona.
 
@@ -121,7 +121,7 @@ This project is for demonstration purposes only. It is not intended for public u
 
 The general architecture of the project is as follows:
 
-<img src="./resources/schema.png" alt="Global schema" width="450">
+<img src="./resources/schema.png" alt="Global schema" width="650">
 
 The user interacts directly with Claude AI Desktop. When a request involving Mercadona is made, Claude AI has access to several tools via the MCP (Model Context Protocol) server[^3]. These tools allow access to Mercadona's database through the developed API, or—if the product IDs are known—directly add them to the cart on Mercadona's website.
 
