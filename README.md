@@ -14,9 +14,7 @@ Claude AI buscará aquel producto que quieres comprar o todos los ingredientes n
 
 Te permitirá ahorrar tiempo y evitar olvidos al hacer tu lista de la compra, permitiéndote verificar el carrito de la compra antes de pagar.
 
-**_NOTA IMPORTANTE_**
-
-Este proyecto es solo demostrativo, no busca ser para uso público y haría falta una integración real con la plataforma de Mercadona para un buen funcionamiento.  
+⚠️ **_NOTA_** ⚠️ : Este proyecto es solo demostrativo, no busca ser para uso público y haría falta una integración real con la plataforma de Mercadona para un buen funcionamiento.  
 
 ## Demostración
 
@@ -111,9 +109,7 @@ Claude AI will search for the product you want to buy—or gather all the ingred
 
 It helps you save time and avoid forgetting anything from your shopping list, allowing you to review the cart before finalizing the purchase.
 
-_IMPORTANT NOTE_
-
-This project is for demonstration purposes only. It is not intended for public use and would require real integration with Mercadona's platform for full operation.
+⚠️ **_NOTE_** ⚠️: This project is for demonstration purposes only. It is not intended for public use and would require real integration with Mercadona's platform for full operation.
 
 ## Demo
 
