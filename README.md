@@ -89,7 +89,7 @@ LinkedIn: [www.linkedin.com/in/carlos-alvarez-cia](http://www.linkedin.com/in/ca
 
 ---
 
-English Version
+_English Version_
 
 # Mercadona: Create your cart in seconds—just say what you want to eat.
 
