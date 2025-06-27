@@ -157,7 +157,7 @@ def create_mercadona_cart(products: list[int]):
         return f"Failed to send cart: {response.status_code} - {response.text}"
     
 
-    return f"Cart sent successfully. Response: {response.json().get('Response', 'No response message')}"
+    return "Cart sent successfully."
 
 
 
